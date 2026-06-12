@@ -1,9 +1,8 @@
 #!/usr/bin/env sh
 # default-build.sh — Platform Default CI Build Script
-# Usage: sh onboarding/ci/build/default-build.sh {WORKFLOW_CONTEXT}
+# Usage: sh onboarding/ci/build/default-build.sh
 set -eu
-WORKFLOW_CONTEXT="${1:-}"
-echo "[BUILD] Starting default build stage — context: ${WORKFLOW_CONTEXT}"
+echo "[BUILD] Starting default build stage"
 if [ -f "pom.xml" ]; then
     echo "[BUILD] Detected Maven project"
     mvn clean package -DskipTests --no-transfer-progress

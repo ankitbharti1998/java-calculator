@@ -1,9 +1,8 @@
 #!/usr/bin/env sh
 # default-test.sh — Platform Default CI Test Script
-# Usage: sh onboarding/ci/test/default-test.sh {WORKFLOW_CONTEXT}
+# Usage: sh onboarding/ci/test/default-test.sh
 set -eu
-WORKFLOW_CONTEXT="${1:-}"
-echo "[TEST] Starting default test stage — context: ${WORKFLOW_CONTEXT}"
+echo "[TEST] Starting default test stage"
 if [ -f "pom.xml" ]; then
     echo "[TEST] Detected Maven project"
     mvn test --no-transfer-progress
