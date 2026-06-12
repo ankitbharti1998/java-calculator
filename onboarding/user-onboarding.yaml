@@ -1,20 +1,17 @@
-# user-onboarding.yaml — Generated 2026-06-12 16:08:38 UTC
+# user-onboarding.yaml — Generated 2026-06-12 16:12:48 UTC
 schemaVersion: "1.0"
-team: EA
-serviceName: java-calc
+team: 
+serviceName: java-calculator
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
   - dev
-  - uat
 contacts:
-  primary: abc@npci.org.in
+  primary: 
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#EA-ci"
+  slackChannel: "#devops-ci"
 governance:
   approvalGates:
-    - environment: uat
-      requiredApprovers: 1
   notificationChannels:
-    - slack:#EA-releases
+    - slack:#devops-releases
