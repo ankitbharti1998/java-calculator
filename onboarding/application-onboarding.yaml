@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-12 16:25:42 UTC
+# application-onboarding.yaml — Generated 2026-06-12 16:41:16 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: java-calculator
-artifactPath: target/java-calculator.jar
+artifactName: java-calc
+artifactPath: target/java-calc.jar
 dockerfile:
   enabled: true
   path: Dockerfile
