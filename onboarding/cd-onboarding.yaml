@@ -1,4 +1,4 @@
-# cd-onboarding.yaml — Generated 2026-06-12 16:16:52 UTC
+# cd-onboarding.yaml — Generated 2026-06-12 16:25:42 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -22,3 +22,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
+  - id: deploy-uat
+    enabled: true
+    config:
+      environment: uat
+      strategy: canary
+      entryCommand: kubectl apply -f k8s/uat/
+      rollbackOnFailure: true
+      approvalGate: true
+      canaryWeight: 20

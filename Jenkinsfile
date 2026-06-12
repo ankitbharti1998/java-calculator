@@ -3,7 +3,7 @@
 // App: java-calculator  |  Type: java
 // =================================================================
 pipeline {
-  agent any
+  agent { label 'linux' }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '20'))
@@ -13,6 +13,8 @@ pipeline {
   environment {
     APP_NAME    = 'java-calculator'
     APP_VERSION = '1.0.0'
+    SONAR_TOKEN = credentials('sonar-token')
+    CHECKMARX_TOKEN = credentials('checkmarx-token')
   }
 
   // push / pull_request: configure an SCM webhook on the repo to trigger builds,
@@ -26,13 +28,13 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'echo no build command configured'
+        sh 'sh onboarding/ci/build/default-build.sh {WORKFLOW_CONTEXT}'
       }
     }
     stage('Test') {
       steps {
         // Coverage gate: 80% (enforced inside the test script)
-        sh 'echo no test command configured'
+        sh 'sh onboarding/ci/test/default-test.sh {WORKFLOW_CONTEXT}'
       }
     }
     stage('SonarQube Analysis') {
