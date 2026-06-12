@@ -3,7 +3,11 @@
 // App: java-calc  |  Type: java
 // =================================================================
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3.9-eclipse-temurin-21'
+    }
+  }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '20'))
