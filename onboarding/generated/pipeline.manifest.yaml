@@ -1,0 +1,84 @@
+# application-onboarding.yaml — Generated 2026-06-12 16:08:38 UTC
+schemaVersion: "1.0"
+type: java
+languageVersion: "17"
+packageManager: maven
+artifactName: java-calc
+artifactPath: target/java-calc.jar
+dockerfile:
+  enabled: true
+  path: Dockerfile
+deployTarget:
+  platform: kubernetes
+  namespace: default
+  cluster: prod-cluster-01
+buildCommand: mvn clean package -DskipTests
+testCommand: mvn test
+
+---
+# ci-onboarding.yaml — Generated 2026-06-12 16:08:38 UTC
+schemaVersion: "1.0"
+triggers:
+  - push
+  - pull_request
+stages:
+  - id: sonar
+    override: false
+    config:
+      script_file_name: default-sonar.sh
+      command: sh onboarding/ci/sonar/default-sonar.sh
+  - id: arch-as-code
+    override: false
+    config:
+      script_file_name: default-arch.sh
+      command: sh onboarding/ci/arch/default-arch.sh
+  - id: checkmarx
+    override: false
+    config:
+      script_file_name: default-checkmarx.sh
+      command: sh onboarding/ci/checkmarx/default-checkmarx.sh
+  - id: test
+    override: false
+    config:
+      script_file_name: default-test.sh
+      command: sh onboarding/ci/test/default-test.sh {WORKFLOW_CONTEXT}
+  - id: build
+    override: false
+    config:
+      script_file_name: default-build.sh
+      command: sh onboarding/ci/build/default-build.sh {WORKFLOW_CONTEXT}
+
+---
+# cd-onboarding.yaml — Generated 2026-06-12 16:08:38 UTC
+schemaVersion: "1.0"
+deployStrategy: rolling
+approvalRequired: true
+stages:
+  - id: smoke
+    enabled: true
+    config:
+      healthCheckUrl: https://java-calc.npci.org.in/health
+      timeoutSeconds: 120
+  - id: load
+    enabled: true
+    config:
+      scenarioFile: tests/load/java-calc-load.jmx
+      virtualUsers: 50
+      durationMinutes: 10
+  - id: deploy-dev
+    enabled: true
+    config:
+      environment: dev
+      strategy: rolling
+      entryCommand: kubectl apply -f k8s/dev/
+      rollbackOnFailure: true
+      approvalGate: false
+  - id: deploy-uat
+    enabled: true
+    config:
+      environment: uat
+      strategy: canary
+      entryCommand: kubectl apply -f k8s/uat/
+      rollbackOnFailure: true
+      approvalGate: true
+      canaryWeight: 20

@@ -1,0 +1,16 @@
+# application-onboarding.yaml — Generated 2026-06-12 16:08:38 UTC
+schemaVersion: "1.0"
+type: java
+languageVersion: "17"
+packageManager: maven
+artifactName: java-calc
+artifactPath: target/java-calc.jar
+dockerfile:
+  enabled: true
+  path: Dockerfile
+deployTarget:
+  platform: kubernetes
+  namespace: default
+  cluster: prod-cluster-01
+buildCommand: mvn clean package -DskipTests
+testCommand: mvn test
