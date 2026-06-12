@@ -13,8 +13,6 @@ pipeline {
   environment {
     APP_NAME    = 'java-calc'
     APP_VERSION = '1.0.0'
-    SONAR_TOKEN = credentials('sonar-token')
-    CHECKMARX_TOKEN = credentials('checkmarx-token')
   }
 
   // push / pull_request: configure an SCM webhook on the repo to trigger builds,
