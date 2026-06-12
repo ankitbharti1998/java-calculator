@@ -30,13 +30,13 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'echo no build command configured'
+        sh 'sh onboarding/ci/build/default-build.sh'
       }
     }
     stage('Test') {
       steps {
         // Coverage gate: 80% (enforced inside the test script)
-        sh 'echo no test command configured'
+        sh 'sh onboarding/ci/test/default-test.sh'
       }
     }
     stage('SonarQube Analysis') {

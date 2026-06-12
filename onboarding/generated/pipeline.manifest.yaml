@@ -1,4 +1,4 @@
-# application-onboarding.yaml — Generated 2026-06-12 17:04:29 UTC
+# application-onboarding.yaml — Generated 2026-06-12 17:05:50 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
@@ -16,16 +16,23 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-12 17:04:29 UTC
+# ci-onboarding.yaml — Generated 2026-06-12 17:05:50 UTC
 schemaVersion: "1.0"
 triggers:
   - push
   - pull_request
 stages:
-  []
+  - id: build
+    override: false
+    config:
+      command: sh onboarding/ci/build/default-build.sh
+  - id: test
+    override: false
+    config:
+      command: sh onboarding/ci/test/default-test.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-12 17:04:29 UTC
+# cd-onboarding.yaml — Generated 2026-06-12 17:05:50 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
