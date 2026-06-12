@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # default-build.sh — Platform Default CI Build Script
 # Usage: sh onboarding/ci/build/default-build.sh {WORKFLOW_CONTEXT}
-set -euo pipefail
+set -eu
 WORKFLOW_CONTEXT="${1:-}"
 echo "[BUILD] Starting default build stage — context: ${WORKFLOW_CONTEXT}"
 if [ -f "pom.xml" ]; then

@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # =============================================================
 # default-checkmarx.sh  —  Platform Default Checkmarx SAST Script
 # DevOps Pipeline Platform
 # =============================================================
 # Usage: sh onboarding/ci/checkmarx/default-checkmarx.sh
 # =============================================================
-set -euo pipefail
+set -eu
 echo "[CHECKMARX] Starting Checkmarx SAST scan..."
 if [ -z "${CHECKMARX_TOKEN:-}" ]; then
     echo "[CHECKMARX] CHECKMARX_TOKEN not set — skipping Checkmarx SAST scan"
@@ -14,7 +14,7 @@ fi
 CHECKMARX_SERVER="${CHECKMARX_SERVER:-https://checkmarx.npci.org.in}"
 PROJECT_NAME="${CX_PROJECT_NAME:-${APP_NAME:-my-app}}"
 TEAM_NAME="${CX_TEAM_NAME:-/CxServer/SP/DevOps}"
-if command -v runCxConsole.sh &> /dev/null; then
+if command -v runCxConsole.sh >/dev/null 2>&1; then
     runCxConsole.sh Scan \
         -CxServer "${CHECKMARX_SERVER}" \
         -CxToken "${CHECKMARX_TOKEN}" \
@@ -23,7 +23,7 @@ if command -v runCxConsole.sh &> /dev/null; then
         -LocationType folder \
         -LocationPath "." \
         -ReportPDF "checkmarx-report.pdf"
-elif command -v cx &> /dev/null; then
+elif command -v cx >/dev/null 2>&1; then
     cx scan create \
         --project-name "${PROJECT_NAME}" \
         --source "."

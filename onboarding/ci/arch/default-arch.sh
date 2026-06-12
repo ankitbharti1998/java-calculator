@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # =============================================================
 # default-arch.sh  —  Platform Default Architecture-as-Code Script
 # DevOps Pipeline Platform
 # =============================================================
 # Usage: sh onboarding/ci/arch/default-arch.sh
 # =============================================================
-set -euo pipefail
+set -eu
 echo "[ARCH] Starting Architecture-as-Code review..."
 ARCH_RULES_PATH="${ARCH_RULES_PATH:-architecture/}"
 POLICY_PACK="${POLICY_PACK:-default}"
@@ -15,7 +15,7 @@ if [ ! -d "$ARCH_RULES_PATH" ]; then
     exit 0
 fi
 echo "[ARCH] Running architecture policy check with pack: ${POLICY_PACK}"
-if command -v arch-as-code &> /dev/null; then
+if command -v arch-as-code >/dev/null 2>&1; then
     arch-as-code validate \
         --rules-path "${ARCH_RULES_PATH}" \
         --policy-pack "${POLICY_PACK}" \

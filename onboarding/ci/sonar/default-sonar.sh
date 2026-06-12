@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # =============================================================
 # default-sonar.sh  —  Platform Default SonarQube Analysis Script
 # DevOps Pipeline Platform
 # =============================================================
 # Usage: sh onboarding/ci/sonar/default-sonar.sh
 # =============================================================
-set -euo pipefail
+set -eu
 echo "[SONAR] Starting SonarQube analysis..."
 if [ -z "${SONAR_TOKEN:-}" ]; then
     echo "[SONAR] SONAR_TOKEN not set — skipping SonarQube analysis"

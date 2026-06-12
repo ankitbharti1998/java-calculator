@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # default-test.sh — Platform Default CI Test Script
 # Usage: sh onboarding/ci/test/default-test.sh {WORKFLOW_CONTEXT}
-set -euo pipefail
+set -eu
 WORKFLOW_CONTEXT="${1:-}"
 echo "[TEST] Starting default test stage — context: ${WORKFLOW_CONTEXT}"
 if [ -f "pom.xml" ]; then
