@@ -1,14 +1,31 @@
-# ci-onboarding.yaml — Generated 2026-06-12 17:10:36 UTC
+# ci-onboarding.yaml — Generated 2026-06-12 17:13:07 UTC
 schemaVersion: "1.0"
 triggers:
   - push
   - pull_request
 stages:
-  - id: build
+  - id: sonar
     override: false
     config:
-      command: sh onboarding/ci/build/default-build.sh
+      script_file_name: default-sonar.sh
+      command: sh onboarding/ci/sonar/default-sonar.sh
+  - id: arch-as-code
+    override: false
+    config:
+      script_file_name: default-arch.sh
+      command: sh onboarding/ci/arch/default-arch.sh
+  - id: checkmarx
+    override: false
+    config:
+      script_file_name: default-checkmarx.sh
+      command: sh onboarding/ci/checkmarx/default-checkmarx.sh
   - id: test
     override: false
     config:
+      script_file_name: default-test.sh
       command: sh onboarding/ci/test/default-test.sh
+  - id: build
+    override: false
+    config:
+      script_file_name: default-build.sh
+      command: sh onboarding/ci/build/default-build.sh

@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-12 17:10:36 UTC
+# application-onboarding.yaml — Generated 2026-06-12 17:13:07 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: java-calculator
-artifactPath: target/java-calculator.jar
+artifactName: java-calc
+artifactPath: target/java-calc.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,23 +16,40 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-12 17:10:36 UTC
+# ci-onboarding.yaml — Generated 2026-06-12 17:13:07 UTC
 schemaVersion: "1.0"
 triggers:
   - push
   - pull_request
 stages:
-  - id: build
+  - id: sonar
     override: false
     config:
-      command: sh onboarding/ci/build/default-build.sh
+      script_file_name: default-sonar.sh
+      command: sh onboarding/ci/sonar/default-sonar.sh
+  - id: arch-as-code
+    override: false
+    config:
+      script_file_name: default-arch.sh
+      command: sh onboarding/ci/arch/default-arch.sh
+  - id: checkmarx
+    override: false
+    config:
+      script_file_name: default-checkmarx.sh
+      command: sh onboarding/ci/checkmarx/default-checkmarx.sh
   - id: test
     override: false
     config:
+      script_file_name: default-test.sh
       command: sh onboarding/ci/test/default-test.sh
+  - id: build
+    override: false
+    config:
+      script_file_name: default-build.sh
+      command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-12 17:10:36 UTC
+# cd-onboarding.yaml — Generated 2026-06-12 17:13:07 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -40,12 +57,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://java-calculator.npci.org.in/health
+      healthCheckUrl: https://java-calc.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/java-calculator-load.jmx
+      scenarioFile: tests/load/java-calc-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
@@ -56,3 +73,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
+  - id: deploy-staging
+    enabled: true
+    config:
+      environment: staging
+      strategy: canary
+      entryCommand: kubectl apply -f k8s/staging/
+      rollbackOnFailure: true
+      approvalGate: true
+      canaryWeight: 20

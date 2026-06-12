@@ -1,4 +1,4 @@
-# cd-onboarding.yaml — Generated 2026-06-12 17:10:36 UTC
+# cd-onboarding.yaml — Generated 2026-06-12 17:13:07 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -6,12 +6,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://java-calculator.npci.org.in/health
+      healthCheckUrl: https://java-calc.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/java-calculator-load.jmx
+      scenarioFile: tests/load/java-calc-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
@@ -22,3 +22,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
+  - id: deploy-staging
+    enabled: true
+    config:
+      environment: staging
+      strategy: canary
+      entryCommand: kubectl apply -f k8s/staging/
+      rollbackOnFailure: true
+      approvalGate: true
+      canaryWeight: 20
