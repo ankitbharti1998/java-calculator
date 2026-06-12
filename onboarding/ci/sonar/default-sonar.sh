@@ -7,6 +7,10 @@
 # =============================================================
 set -euo pipefail
 echo "[SONAR] Starting SonarQube analysis..."
+if [ -z "${SONAR_TOKEN:-}" ]; then
+    echo "[SONAR] SONAR_TOKEN not set — skipping SonarQube analysis"
+    exit 0
+fi
 if [ -f "pom.xml" ]; then
     echo "[SONAR] Detected Maven project"
     mvn sonar:sonar \

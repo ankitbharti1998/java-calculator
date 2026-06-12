@@ -7,6 +7,10 @@
 # =============================================================
 set -euo pipefail
 echo "[CHECKMARX] Starting Checkmarx SAST scan..."
+if [ -z "${CHECKMARX_TOKEN:-}" ]; then
+    echo "[CHECKMARX] CHECKMARX_TOKEN not set — skipping Checkmarx SAST scan"
+    exit 0
+fi
 CHECKMARX_SERVER="${CHECKMARX_SERVER:-https://checkmarx.npci.org.in}"
 PROJECT_NAME="${CX_PROJECT_NAME:-${APP_NAME:-my-app}}"
 TEAM_NAME="${CX_TEAM_NAME:-/CxServer/SP/DevOps}"

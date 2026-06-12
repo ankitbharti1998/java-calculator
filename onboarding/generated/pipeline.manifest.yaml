@@ -1,4 +1,4 @@
-# application-onboarding.yaml — Generated 2026-06-12 16:12:48 UTC
+# application-onboarding.yaml — Generated 2026-06-12 16:16:52 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-12 16:12:48 UTC
+# ci-onboarding.yaml — Generated 2026-06-12 16:16:52 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -25,7 +25,7 @@ stages:
   []
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-12 16:12:48 UTC
+# cd-onboarding.yaml — Generated 2026-06-12 16:16:52 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
