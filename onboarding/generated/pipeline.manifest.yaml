@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-15 16:13:51 UTC
+# application-onboarding.yaml — Generated 2026-06-15 16:19:25 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: EA
-artifactPath: target/EA.jar
+artifactName: npci-devops
+artifactPath: target/npci-devops.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-15 16:13:51 UTC
+# ci-onboarding.yaml — Generated 2026-06-15 16:19:25 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -49,7 +49,7 @@ stages:
       command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-15 16:13:51 UTC
+# cd-onboarding.yaml — Generated 2026-06-15 16:19:25 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -57,12 +57,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://EA.npci.org.in/health
+      healthCheckUrl: https://npci-devops.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/EA-load.jmx
+      scenarioFile: tests/load/npci-devops-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
