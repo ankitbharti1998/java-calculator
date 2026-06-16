@@ -1,4 +1,4 @@
-# cd-onboarding.yaml — Generated 2026-06-15 16:19:25 UTC
+# cd-onboarding.yaml — Generated 2026-06-16 12:48:37 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -6,12 +6,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://npci-devops.npci.org.in/health
+      healthCheckUrl: https://EA.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/npci-devops-load.jmx
+      scenarioFile: tests/load/EA-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
@@ -22,12 +22,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
-  - id: deploy-staging
+  - id: deploy-uat
     enabled: true
     config:
-      environment: staging
+      environment: uat
       strategy: canary
-      entryCommand: kubectl apply -f k8s/staging/
+      entryCommand: kubectl apply -f k8s/uat/
       rollbackOnFailure: true
       approvalGate: true
       canaryWeight: 20
