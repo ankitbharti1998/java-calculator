@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
+# user-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
 schemaVersion: "1.0"
-team: aeff
-serviceName: DATMATICS
+team: EA
+serviceName: NPCI-GO
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
   - dev
-  - staging
+  - uat
 contacts:
-  primary: assdsd@npci.org.in
+  primary: dfcdsds@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#aeff-ci"
+  slackChannel: "#EA-ci"
 governance:
   approvalGates:
-    - environment: staging
+    - environment: uat
       requiredApprovers: 1
   notificationChannels:
-    - slack:#aeff-releases
+    - slack:#EA-releases

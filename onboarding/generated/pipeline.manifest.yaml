@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
+# application-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: DATMATICS
-artifactPath: target/DATMATICS.jar
+artifactName: NPCI-GO
+artifactPath: target/NPCI-GO.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
+# ci-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -49,7 +49,7 @@ stages:
       command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
+# cd-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -57,12 +57,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://DATMATICS.npci.org.in/health
+      healthCheckUrl: https://NPCI-GO.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/DATMATICS-load.jmx
+      scenarioFile: tests/load/NPCI-GO-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
@@ -73,12 +73,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
-  - id: deploy-staging
+  - id: deploy-uat
     enabled: true
     config:
-      environment: staging
+      environment: uat
       strategy: canary
-      entryCommand: kubectl apply -f k8s/staging/
+      entryCommand: kubectl apply -f k8s/uat/
       rollbackOnFailure: true
       approvalGate: true
       canaryWeight: 20

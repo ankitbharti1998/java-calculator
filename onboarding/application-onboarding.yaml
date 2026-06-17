@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
+# application-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: DATMATICS
-artifactPath: target/DATMATICS.jar
+artifactName: NPCI-GO
+artifactPath: target/NPCI-GO.jar
 dockerfile:
   enabled: true
   path: Dockerfile
