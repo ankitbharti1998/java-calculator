@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
+# application-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: nbblll
-artifactPath: target/nbblll.jar
+artifactName: drtgtgg
+artifactPath: target/drtgtgg.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
+# ci-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -49,7 +49,7 @@ stages:
       command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
+# cd-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -57,20 +57,20 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://nbblll.npci.org.in/health
+      healthCheckUrl: https://drtgtgg.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/nbblll-load.jmx
+      scenarioFile: tests/load/drtgtgg-load.jmx
       virtualUsers: 50
       durationMinutes: 10
-  - id: deploy-dev
+  - id: deploy-qa
     enabled: true
     config:
-      environment: dev
+      environment: qa
       strategy: rolling
-      entryCommand: kubectl apply -f k8s/dev/
+      entryCommand: kubectl apply -f k8s/qa/
       rollbackOnFailure: true
       approvalGate: false
   - id: deploy-staging

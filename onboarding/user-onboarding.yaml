@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
+# user-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
 schemaVersion: "1.0"
-team: sedf
-serviceName: nbblll
+team: sesgg
+serviceName: drtgtgg
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
-  - dev
+  - qa
   - staging
 contacts:
-  primary: vfffff@npci.org.in
+  primary: dfdfdf@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#sedf-ci"
+  slackChannel: "#sesgg-ci"
 governance:
   approvalGates:
     - environment: staging
       requiredApprovers: 1
   notificationChannels:
-    - slack:#sedf-releases
+    - slack:#sesgg-releases
