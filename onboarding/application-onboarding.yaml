@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
+# application-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: drtgtgg
-artifactPath: target/drtgtgg.jar
+artifactName: DATMATICS
+artifactPath: target/DATMATICS.jar
 dockerfile:
   enabled: true
   path: Dockerfile

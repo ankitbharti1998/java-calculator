@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
+# user-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
 schemaVersion: "1.0"
-team: sesgg
-serviceName: drtgtgg
+team: aeff
+serviceName: DATMATICS
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
-  - qa
+  - dev
   - staging
 contacts:
-  primary: dfdfdf@npci.org.in
+  primary: assdsd@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#sesgg-ci"
+  slackChannel: "#aeff-ci"
 governance:
   approvalGates:
     - environment: staging
       requiredApprovers: 1
   notificationChannels:
-    - slack:#sesgg-releases
+    - slack:#aeff-releases

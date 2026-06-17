@@ -1,4 +1,4 @@
-# cd-onboarding.yaml — Generated 2026-06-17 15:57:24 UTC
+# cd-onboarding.yaml — Generated 2026-06-17 16:15:48 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -6,20 +6,20 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://drtgtgg.npci.org.in/health
+      healthCheckUrl: https://DATMATICS.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/drtgtgg-load.jmx
+      scenarioFile: tests/load/DATMATICS-load.jmx
       virtualUsers: 50
       durationMinutes: 10
-  - id: deploy-qa
+  - id: deploy-dev
     enabled: true
     config:
-      environment: qa
+      environment: dev
       strategy: rolling
-      entryCommand: kubectl apply -f k8s/qa/
+      entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
   - id: deploy-staging
