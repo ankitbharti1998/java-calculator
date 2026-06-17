@@ -1,4 +1,4 @@
-# user-onboarding.yaml — Generated 2026-06-16 12:48:37 UTC
+# user-onboarding.yaml — Generated 2026-06-17 12:21:24 UTC
 schemaVersion: "1.0"
 team: EA
 serviceName: EA
@@ -9,7 +9,7 @@ environmentLabels:
   - dev
   - uat
 contacts:
-  primary: efddf@npci.org.in
+  primary: sdfsdf@npci.org.in
   secondary: platform-oncall@npci.org.in
   slackChannel: "#EA-ci"
 governance:
