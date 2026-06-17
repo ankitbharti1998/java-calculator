@@ -1,4 +1,4 @@
-# ci-onboarding.yaml — Generated 2026-06-17 12:56:10 UTC
+# ci-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
 schemaVersion: "1.0"
 triggers:
   - push

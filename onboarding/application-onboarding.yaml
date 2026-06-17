@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 12:56:10 UTC
+# application-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: EA-TEsting
-artifactPath: target/EA-TEsting.jar
+artifactName: nbblll
+artifactPath: target/nbblll.jar
 dockerfile:
   enabled: true
   path: Dockerfile

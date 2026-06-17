@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-17 12:56:10 UTC
+# user-onboarding.yaml — Generated 2026-06-17 15:28:42 UTC
 schemaVersion: "1.0"
-team: nbsl
-serviceName: EA-TEsting
+team: sedf
+serviceName: nbblll
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
   - dev
-  - uat
+  - staging
 contacts:
-  primary: scdc@npci.org.in
+  primary: vfffff@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#nbsl-ci"
+  slackChannel: "#sedf-ci"
 governance:
   approvalGates:
-    - environment: uat
+    - environment: staging
       requiredApprovers: 1
   notificationChannels:
-    - slack:#nbsl-releases
+    - slack:#sedf-releases
