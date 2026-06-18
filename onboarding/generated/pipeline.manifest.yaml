@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
+# application-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: NPCI-GO
-artifactPath: target/NPCI-GO.jar
+artifactName: APP_1
+artifactPath: target/APP_1.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
+# ci-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -49,7 +49,7 @@ stages:
       command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
+# cd-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -57,12 +57,12 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://NPCI-GO.npci.org.in/health
+      healthCheckUrl: https://APP_1.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/NPCI-GO-load.jmx
+      scenarioFile: tests/load/APP_1-load.jmx
       virtualUsers: 50
       durationMinutes: 10
   - id: deploy-dev
@@ -73,12 +73,12 @@ stages:
       entryCommand: kubectl apply -f k8s/dev/
       rollbackOnFailure: true
       approvalGate: false
-  - id: deploy-uat
+  - id: deploy-staging
     enabled: true
     config:
-      environment: uat
+      environment: staging
       strategy: canary
-      entryCommand: kubectl apply -f k8s/uat/
+      entryCommand: kubectl apply -f k8s/staging/
       rollbackOnFailure: true
       approvalGate: true
       canaryWeight: 20

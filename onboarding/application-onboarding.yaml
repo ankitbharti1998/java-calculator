@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
+# application-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: NPCI-GO
-artifactPath: target/NPCI-GO.jar
+artifactName: APP_1
+artifactPath: target/APP_1.jar
 dockerfile:
   enabled: true
   path: Dockerfile

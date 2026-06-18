@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-17 16:23:06 UTC
+# user-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
 schemaVersion: "1.0"
-team: EA
-serviceName: NPCI-GO
+team: AI
+serviceName: APP_1
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
   - dev
-  - uat
+  - staging
 contacts:
-  primary: dfcdsds@npci.org.in
+  primary: sdfsfd@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#EA-ci"
+  slackChannel: "#AI-ci"
 governance:
   approvalGates:
-    - environment: uat
+    - environment: staging
       requiredApprovers: 1
   notificationChannels:
-    - slack:#EA-releases
+    - slack:#AI-releases
