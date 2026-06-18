@@ -1,20 +1,20 @@
-# user-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
+# user-onboarding.yaml — Generated 2026-06-18 11:56:22 UTC
 schemaVersion: "1.0"
-team: AI
-serviceName: APP_1
+team: saaa
+serviceName: EA
 repository:
   url: https://github.com/ankitbharti1998/java-calculator.git
   defaultBranch: main
 environmentLabels:
-  - dev
-  - staging
+  - qa
+  - uat
 contacts:
-  primary: sdfsfd@npci.org.in
+  primary: dffdsg@npci.org.in
   secondary: platform-oncall@npci.org.in
-  slackChannel: "#AI-ci"
+  slackChannel: "#saaa-ci"
 governance:
   approvalGates:
-    - environment: staging
+    - environment: uat
       requiredApprovers: 1
   notificationChannels:
-    - slack:#AI-releases
+    - slack:#saaa-releases

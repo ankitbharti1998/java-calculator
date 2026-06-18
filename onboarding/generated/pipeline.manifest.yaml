@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
+# application-onboarding.yaml — Generated 2026-06-18 11:56:22 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: APP_1
-artifactPath: target/APP_1.jar
+artifactName: EA
+artifactPath: target/EA.jar
 dockerfile:
   enabled: true
   path: Dockerfile
@@ -16,7 +16,7 @@ buildCommand: mvn clean package -DskipTests
 testCommand: mvn test
 
 ---
-# ci-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
+# ci-onboarding.yaml — Generated 2026-06-18 11:56:22 UTC
 schemaVersion: "1.0"
 triggers:
   - push
@@ -49,7 +49,7 @@ stages:
       command: sh onboarding/ci/build/default-build.sh
 
 ---
-# cd-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
+# cd-onboarding.yaml — Generated 2026-06-18 11:56:22 UTC
 schemaVersion: "1.0"
 deployStrategy: rolling
 approvalRequired: true
@@ -57,28 +57,28 @@ stages:
   - id: smoke
     enabled: true
     config:
-      healthCheckUrl: https://APP_1.npci.org.in/health
+      healthCheckUrl: https://EA.npci.org.in/health
       timeoutSeconds: 120
   - id: load
     enabled: true
     config:
-      scenarioFile: tests/load/APP_1-load.jmx
+      scenarioFile: tests/load/EA-load.jmx
       virtualUsers: 50
       durationMinutes: 10
-  - id: deploy-dev
+  - id: deploy-qa
     enabled: true
     config:
-      environment: dev
+      environment: qa
       strategy: rolling
-      entryCommand: kubectl apply -f k8s/dev/
+      entryCommand: kubectl apply -f k8s/qa/
       rollbackOnFailure: true
       approvalGate: false
-  - id: deploy-staging
+  - id: deploy-uat
     enabled: true
     config:
-      environment: staging
+      environment: uat
       strategy: canary
-      entryCommand: kubectl apply -f k8s/staging/
+      entryCommand: kubectl apply -f k8s/uat/
       rollbackOnFailure: true
       approvalGate: true
       canaryWeight: 20

@@ -1,10 +1,10 @@
-# application-onboarding.yaml — Generated 2026-06-18 11:54:40 UTC
+# application-onboarding.yaml — Generated 2026-06-18 11:56:22 UTC
 schemaVersion: "1.0"
 type: java
 languageVersion: "17"
 packageManager: maven
-artifactName: APP_1
-artifactPath: target/APP_1.jar
+artifactName: EA
+artifactPath: target/EA.jar
 dockerfile:
   enabled: true
   path: Dockerfile
